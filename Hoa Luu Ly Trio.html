@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nguyen Pham Khanh Hoang Bang Thanh Hai - The Surreal Tale</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fefcea, #f1da36);
+      overflow: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .scene {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      padding: 20px;
+      width: 260px;
+      text-align: center;
+      animation: float 3s infinite ease-in-out;
+    }
+    .card h2 {
+      margin: 0;
+      color: #333;
+    }
+    .hoa {
+      margin-top: 10px;
+      font-size: 22px;
+      color: #c71585;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff69b4; }
+      to { text-shadow: 0 0 25px #ff1493; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .binary-tree {
+      margin-top: 15px;
+      font-family: monospace;
+      font-size: 14px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 10px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+    .world {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      animation: worldShift 10s infinite alternate;
+    }
+    @keyframes worldShift {
+      0% { background: url('./wedding.jpg') center/cover no-repeat; }
+      100% { background: url('./cemetery.jpg') center/cover no-repeat; }
+    }
+    .cow, .dog {
+      position: absolute;
+      font-size: 40px;
+      animation: wander 20s linear infinite;
+    }
+    .dog { top: 70%; left: -10%; }
+    .cow { top: 80%; left: 110%; animation-delay: 10s; }
+    @keyframes wander {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-120vw); }
+    }
+    .god {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 60px;
+      color: gold;
+      text-shadow: 0 0 20px white, 0 0 40px yellow;
+      animation: halo 3s infinite alternate;
+    }
+    @keyframes halo {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="world"></div>
+  <header>✨ The Infinite Hoa Lưu Ly & Symmetric Binary Trees ✨</header>
+  <div class="scene">
+    <div class="card">
+      <h2>Nguyen Khanh Bang</h2>
+      <div class="hoa">🌸 Licking Hoa Lưu Ly 🌸</div>
+      <div class="binary-tree" id="tree1"></div>
+    </div>
+    <div class="card">
+      <h2>Pham Hoang Hai</h2>
+      <div class="hoa">🌸 Licking Hoa Lưu Ly 🌸</div>
+      <div class="binary-tree" id="tree2"></div>
+    </div>
+    <div class="card">
+      <h2>Hoang Bang Thanh</h2>
+      <div class="hoa">🌸 Licking Hoa Lưu Ly 🌸</div>
+      <div class="binary-tree" id="tree3"></div>
+    </div>
+  </div>
+  <div class="dog">🐕</div>
+  <div class="cow">🐄</div>
+  <div class="god">☀️ GOD</div>
+
+  <!-- Audio effects -->
+  <audio id="bells" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+  <audio id="moo" src="https://www.fesliyanstudios.com/play-mp3/387" loop></audio>
+  <audio id="bark" src="https://www.fesliyanstudios.com/play-mp3/6550" loop></audio>
+  <audio id="choir" src="https://www.fesliyanstudios.com/play-mp3/6499" loop></audio>
+
+  <script>
+    function generateTree(depth = 3) {
+      if (depth === 0) return "*";
+      return `(${generateTree(depth-1)} ⬅️➡️ ${generateTree(depth-1)})`;
+    }
+
+    function refreshTrees() {
+      document.getElementById("tree1").innerText = generateTree(3);
+      document.getElementById("tree2").innerText = generateTree(3);
+      document.getElementById("tree3").innerText = generateTree(3);
+    }
+
+    setInterval(refreshTrees, 3000);
+    refreshTrees();
+
+    // Audio controller
+    window.onload = () => {
+      const bells = document.getElementById("bells");
+      const moo = document.getElementById("moo");
+      const bark = document.getElementById("bark");
+      const choir = document.getElementById("choir");
+
+      bells.volume = 0.2;
+      moo.volume = 0.2;
+      bark.volume = 0.2;
+      choir.volume = 0.3;
+
+      bells.play();
+      moo.play();
+      bark.play();
+      choir.play();
+    };
+  </script>
+</body>
+</html>
